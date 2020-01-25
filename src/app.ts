@@ -4,6 +4,8 @@ import cors from "cors";
 
 import {NotFoundError, ServerError} from "./middleware";
 
+import {Student} from "./routes";
+
 import connectDB from "./database";
 import {port, url} from "./config";
 
@@ -12,6 +14,8 @@ const app = express();
 app.use("*", cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use("/student", Student);
 
 connectDB(url);
 
