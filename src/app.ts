@@ -4,7 +4,7 @@ import cors from "cors";
 
 import {NotFoundError, ServerError} from "./middleware";
 
-import {Student, Groups} from "./routes";
+import {Student, Groups, Auditory} from "./routes";
 
 import connectDB from "./database";
 import {port, url} from "./config";
@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 
 app.use("/student", Student);
 app.use("/group", Groups);
+app.use("/auditory", Auditory);
 
 connectDB(url);
 
