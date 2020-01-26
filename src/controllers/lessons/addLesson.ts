@@ -20,25 +20,24 @@ export default async (req: Request, res: Response) => {
       begin: tempLesson.begin,
       end: tempLesson.end
     });
-    console.log(oldLesson);
     if (oldLesson) {
       res.status(400).json({error: "At that time the lesson already exists!"});
       return;
     }
 
-    const auditory = await Auditory.findOne(tempLesson.auditoryId);
-    if (auditory) {
+    const auditory = await Auditory.findById(tempLesson.auditoryId);
+    if (!auditory) {
       res.status(404).json({error: "Auditory is not found!"});
       return;
     }
 
-    const teacher = await Teachers.findOne(tempLesson.teacherId);
-    if (teacher) {
+    const teacher = await Teachers.findById(tempLesson.teacherId);
+    if (!teacher) {
       res.status(404).json({error: "Teacher is not found!"});
       return;
     }
 
-    const group = await Group.findOne(tempLesson.groupId);
+    const group = await Group.findById(tempLesson.groupId);
     if (!group) {
       res.status(404).json({error: "Group is not found!"});
       return;

@@ -36,13 +36,13 @@ export default async (req: Request, res: Response) => {
     }
 
     const auditory = await Auditory.findOne(tempLesson.auditoryId);
-    if (auditory) {
+    if (!auditory) {
       res.status(404).json({error: "Auditory is not found!"});
       return;
     }
 
     const teacher = await Teachers.findOne(tempLesson.teacherId);
-    if (teacher) {
+    if (!teacher) {
       res.status(404).json({error: "Teacher is not found!"});
       return;
     }
