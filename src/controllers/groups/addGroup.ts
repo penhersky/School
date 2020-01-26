@@ -12,11 +12,11 @@ export default async (req: Request, res: Response) => {
       return;
     }
 
-    const newStudent = await Group.create({
+    const newGroup = await Group.create({
       name: req.body.name
     });
 
-    res.status(201).json(_.pick(newStudent, ["id", "name"]));
+    res.status(201).json(_.pick(newGroup, ["id", "name"]));
   } catch (error) {
     if (isDevelopment) console.log(error);
     log.error(error.message, {path: __filename, object: "addGroup"});

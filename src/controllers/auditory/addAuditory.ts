@@ -16,7 +16,7 @@ export default async (req: Request, res: Response) => {
       return;
     }
 
-    const newStudent = await Auditory.create({
+    const newAuditory = await Auditory.create({
       number: req.body.number,
       floor: req.body.floor,
       corps: req.body.corps
@@ -24,7 +24,7 @@ export default async (req: Request, res: Response) => {
 
     res
       .status(201)
-      .json(_.omit(newStudent, ["id", "number", "floor", "corps"]));
+      .json(_.omit(newAuditory, ["id", "number", "floor", "corps"]));
   } catch (error) {
     if (isDevelopment) console.log(error);
     log.error(error.message, {path: __filename, object: "addAuditory"});
