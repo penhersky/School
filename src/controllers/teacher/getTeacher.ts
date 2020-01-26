@@ -8,12 +8,12 @@ export default async (req: Request, res: Response) => {
   try {
     const teachersId = req.params.id;
 
-    const teachers = await Teachers.find({teachersId});
-    if (teachers) {
+    const teacher = await Teachers.find({teachersId});
+    if (teacher) {
       res.status(400).json({error: "Teacher is not found!"});
       return;
     }
-    res.status(200).json(_.pick(teachers, ["id", "name", "surname"]));
+    res.status(200).json(_.pick(teacher, ["id", "name", "surname"]));
   } catch (error) {
     if (isDevelopment) console.log(error);
     log.error(error.message, {path: __filename, object: "getTeachers"});

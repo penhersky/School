@@ -4,7 +4,7 @@ import cors from "cors";
 
 import {NotFoundError, ServerError} from "./middleware";
 
-import {Student, Groups, Auditory, Teacher} from "./routes";
+import {Student, Groups, Auditory, Teacher, Lessons} from "./routes";
 
 import connectDB from "./database";
 import {port, url} from "./config";
@@ -19,6 +19,7 @@ app.use("/student", Student);
 app.use("/group", Groups);
 app.use("/auditory", Auditory);
 app.use("/teacher", Teacher);
+app.use("/lessons", Lessons);
 
 connectDB(url);
 

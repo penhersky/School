@@ -8,7 +8,7 @@ export default async (req: Request, res: Response) => {
   try {
     const auditoryId = req.params.id;
 
-    const auditory = await Auditory.find({auditoryId});
+    const auditory = await Auditory.findOne(auditoryId);
     if (auditory) {
       res.status(400).json({error: "Auditory is not found!"});
       return;
